@@ -145,12 +145,15 @@ function _add(...args) {
 }
 
 function add() {
-    let res = [...arguments].reduce((x, y) => x + y);
-    return add.arguments.length == 1 ? res : add.bind(null, res);
+    return arguments.length == 0 ? 0 :(
+        res = [...arguments].reduce((x, y) => x + y),
+        function temp(){
+        if(arguments.length == 0)return res
+        return add(...[res, ...arguments])})
 }
 
 function testAdd() {
-    console.log(add(1, 2)(1, 2)(1, 2, 3)());
+    console.log(add(12)(12,12)());
 }
 
 // testAdd()
